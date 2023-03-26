@@ -1,18 +1,7 @@
 package br.com.dio.transportadora.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "tb_pacote_endereco")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class PacoteEndereco {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne
-    @JoinColumn(name = "pacote_id")
-    private Pacote pacote;
+public class PacoteEnderecoForm {
+    private Long pacoteId;
     private String origemCep;
     private String origemNumero;
     private String origemComplemento;
@@ -20,20 +9,12 @@ public class PacoteEndereco {
     private String destinoNumero;
     private String destinoComplemento;
 
-    public Long getId() {
-        return id;
+    public Long getPacoteId() {
+        return pacoteId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Pacote getPacote() {
-        return pacote;
-    }
-
-    public void setPacote(Pacote pacote) {
-        this.pacote = pacote;
+    public void setPacoteId(Long pacoteId) {
+        this.pacoteId = pacoteId;
     }
 
     public String getOrigemCep() {

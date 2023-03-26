@@ -1,9 +1,11 @@
 package br.com.dio.transportadora.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_pacote")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Pacote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
