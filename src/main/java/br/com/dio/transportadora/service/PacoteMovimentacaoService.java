@@ -10,6 +10,14 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Classe para simular a obtenção do próximo endereço do pacote
+ * de acordo com o endereço atual
+ *
+ * Essa classe encapsula a funcionalidade inteira para obter os dados do pacote,
+ * seus endereços, históricos atuais, calcula qual o proximo endereço,
+ * e atualiza o historico e a situacao do pacote
+ */
 @Service
 public class PacoteMovimentacaoService implements IPacoteMovimentacaoService {
     @Autowired
