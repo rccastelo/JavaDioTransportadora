@@ -1,7 +1,6 @@
 package br.com.dio.transportadora.service;
 
 import br.com.dio.transportadora.entity.Pacote;
-import br.com.dio.transportadora.entity.PacoteEndereco;
 import br.com.dio.transportadora.entity.PacoteHistorico;
 import br.com.dio.transportadora.entity.PacoteHistoricoId;
 import br.com.dio.transportadora.interfaces.repository.IPacoteHistoricoRepository;
@@ -18,15 +17,11 @@ public class PacoteHistoricoService implements IPacoteHistoricoService {
     private final IPacoteHistoricoRepository repository;
     @Autowired
     private final PacoteService pacoteService;
-    @Autowired
-    private final PacoteEnderecoService pacoteEnderecoService;
 
     public PacoteHistoricoService(IPacoteHistoricoRepository repository,
-                                  PacoteService pacoteService,
-                                  PacoteEnderecoService pacoteEnderecoService) {
+                                  PacoteService pacoteService) {
         this.repository = repository;
         this.pacoteService = pacoteService;
-        this.pacoteEnderecoService = pacoteEnderecoService;
     }
 
     @Override
@@ -40,33 +35,17 @@ public class PacoteHistoricoService implements IPacoteHistoricoService {
     }
 
     @Override
-    public PacoteHistorico incluir(Long pacote_id) {
+    public PacoteHistorico incluir(Long pacote_id, PacoteHistorico pacoteHistorico) {
         Pacote pacote = pacoteService.consultar(pacote_id);
 
         if (pacote == null) return null;
 
-        PacoteEndereco endereco = pacoteEnderecoService.consultarPorPacoteId(pacote_id);
-
-        if (endereco == null) return null;
-
-        PacoteHistorico historico = movimentarParaProximoEndereco(endereco);
-
         PacoteHistoricoId phid = new PacoteHistoricoId();
         phid.setPacote(pacote);
         phid.setDataHora(LocalDateTime.now());
-        historico.setId(phid);
 
-        return repository.save(historico);
-    }
+        pacoteHistorico.setId(phid);
 
-    private PacoteHistorico movimentarParaProximoEndereco(PacoteEndereco pacoteEndereco) {
-        PacoteHistorico destino = new PacoteHistorico();
-
-        destino.setCep("98765-432");
-        destino.setNumero("345");
-        destino.setComplemento("Complemento");
-        destino.setTipo("Tipo");
-
-        return destino;
+        return repository.save(pacoteHistorico);
     }
 }

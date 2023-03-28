@@ -10,5 +10,6 @@ public interface IPacoteService {
     Pacote consultar(Long id);
     Pacote incluir(PacoteForm pacote);
     Pacote alterar(Long id, PacoteForm pacote);
+    Pacote alterar(Long id, String situacao);
     void excluir(Long id);
 }

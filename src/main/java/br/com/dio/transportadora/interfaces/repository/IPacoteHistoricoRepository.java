@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface IPacoteHistoricoRepository extends JpaRepository<PacoteHistorico, PacoteHistoricoId> {
     @Query(value = "SELECT ph.pacote_id, ph.dataHora, ph.cep, ph.numero, ph.complemento, ph.tipo, " +
+            "ph.bairro, ph.uf, ph.logradouro, " +
             "p.id as p_id, p.descricao, p.volumeM3, p.pesoGrama, p.pessoa_id, p.situacao " +
             "FROM tb_pacote_historico ph " +
             "INNER JOIN tb_pacote p ON p.id = ph.pacote_id " +

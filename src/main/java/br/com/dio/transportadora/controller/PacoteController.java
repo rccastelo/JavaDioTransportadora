@@ -2,6 +2,8 @@ package br.com.dio.transportadora.controller;
 
 import br.com.dio.transportadora.entity.Pacote;
 import br.com.dio.transportadora.entity.PacoteForm;
+import br.com.dio.transportadora.entity.PacoteHistorico;
+import br.com.dio.transportadora.service.PacoteMovimentacaoService;
 import br.com.dio.transportadora.service.PacoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +15,13 @@ import java.util.List;
 public class PacoteController {
     @Autowired
     private final PacoteService service;
+    @Autowired
+    private final PacoteMovimentacaoService movimentacaoService;
 
-    public PacoteController(PacoteService service) {
+    public PacoteController(PacoteService service,
+                            PacoteMovimentacaoService movimentacaoService) {
         this.service = service;
+        this.movimentacaoService = movimentacaoService;
     }
 
     @GetMapping
@@ -41,5 +47,10 @@ public class PacoteController {
     @DeleteMapping("/{id}")
     public void excluir(@PathVariable Long id) {
         service.excluir(id);
+    }
+
+    @PutMapping("/{pacote_id}/atualizar")
+    public PacoteHistorico atualizar(@PathVariable Long pacote_id) {
+        return movimentacaoService.atualizar(pacote_id);
     }
 }

@@ -8,6 +8,9 @@ public class PacoteHistorico {
     @EmbeddedId
     private PacoteHistoricoId id;
     private String cep;
+    private String bairro;
+    private String logradouro;
+    private String uf;
     private String numero;
     private String complemento;
     private String tipo;
@@ -50,5 +53,29 @@ public class PacoteHistorico {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 }

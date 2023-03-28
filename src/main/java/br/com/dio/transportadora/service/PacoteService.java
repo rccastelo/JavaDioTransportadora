@@ -65,6 +65,19 @@ public class PacoteService implements IPacoteService {
     }
 
     @Override
+    public Pacote alterar(Long id, String situacao) {
+        Pacote pacote = this.consultar(id);
+
+        if (pacote != null) {
+            pacote.setSituacao(situacao);
+
+            return repository.save(pacote);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public void excluir(Long id) {
         repository.deleteById(id);
     }

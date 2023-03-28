@@ -26,9 +26,4 @@ public class PacoteHistoricoController {
     public List<PacoteHistorico> consultarPorPacoteId(@PathVariable Long pacote_id) {
         return service.consultarPorPacoteId(pacote_id);
     }
-
-    @PutMapping("/pacote/{pacote_id}/movimentar")
-    public PacoteHistorico incluir(@PathVariable Long pacote_id) {
-        return service.incluir(pacote_id);
-    }
 }
